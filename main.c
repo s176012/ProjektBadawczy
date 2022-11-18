@@ -13,7 +13,7 @@
 #include <pico/enc28j60/enc28j60.h>
 #include <pico/enc28j60/ethernetif.h>
 
-#include "tcpecho_raw.h"
+// #include "tcpecho_raw.h"
 
 /* Configuration */
 #define SPI spi0
@@ -95,7 +95,7 @@ main()
 	gpio_set_irq_enabled_with_callback(INT_PIN, GPIO_IRQ_EDGE_FALL, true, eth_irq);
 	enc28j60_interrupts(&enc28j60, ENC28J60_PKTIE | ENC28J60_TXERIE | ENC28J60_RXERIE);
 
-	tcpecho_raw_init();
+	// tcpecho_raw_init();
 
 	while (true) {
 		struct pbuf* p = NULL;
