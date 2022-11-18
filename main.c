@@ -20,14 +20,14 @@
 #define SPI_BAUD 2000000
 #define SCK_PIN 2
 #define SI_PIN 3
-#define SO_PIN 4
-#define CS_PIN 10
-#define INT_PIN 11
+#define SO_PIN 0                                                                            
+#define CS_PIN 5
+#define INT_PIN 4
 #define RX_QUEUE_SIZE 10
-#define MAC_ADDRESS { 0x62, 0x5E, 0x22, 0x07, 0xDE, 0x92 }
-#define IP_ADDRESS IPADDR4_INIT_BYTES(192, 168, 1, 200)
+#define MAC_ADDRESS { 0x62, 0x4d, 0x40, 0x97, 0x05, 0xc4 }
+#define IP_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 3)
 #define NETWORK_MASK IPADDR4_INIT_BYTES(255, 255, 255, 0)
-#define GATEWAY_ADDRESS IPADDR4_INIT_BYTES(192, 168, 1, 1)
+#define GATEWAY_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 1)
 
 queue_t rx_queue;
 critical_section_t spi_cs;
