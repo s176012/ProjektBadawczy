@@ -13,6 +13,6 @@ pico_sdk_init()
 
 include_directories(.)
 
-add_executable(picoping main.cpp)
+add_executable(picoping main.c)
 target_link_libraries(picoping pico_stdlib lwip pico_enc28j60 pico_one_wire)
 pico_add_extra_outputs(picoping)
