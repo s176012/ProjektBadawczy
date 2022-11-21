@@ -1,0 +1,12 @@
+[submodule "picoping/inc/pico-enc28j60"]
+	path = picoping/inc/pico-enc28j60
+	url = https://git.sr.ht/~krystianch/pico-enc28j60
+[submodule "picoping/inc/pico-extras"]
+	path = picoping/inc/pico-extras
+	url = https://github.com/raspberrypi/pico-extras.git
+[submodule "picoping/inc/pico-sdk"]
+	path = picoping/inc/pico-sdk
+	url = https://github.com/raspberrypi/pico-sdk.git
+[submodule "picoping/sensor/pico-onewire"]
+	path = picoping/sensor/pico-onewire
+	url = https://github.com/adamboardman/pico-onewire.git

@@ -1,4 +1,0 @@
-git clone https://github.com/adamboardman/pico-onewire.git
-git clone https://git.sr.ht/~krystianch/pico-enc28j60
-git clone https://github.com/raspberrypi/pico-extras.git 
-git clone https://github.com/raspberrypi/pico-sdk.git 

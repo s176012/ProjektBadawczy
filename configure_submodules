@@ -1,0 +1,14 @@
+git submodule add https://github.com/adamboardman/pico-onewire.git picoping/sensor/pico-onewire
+git submodule add https://git.sr.ht/~krystianch/pico-enc28j60 picoping/inc/pico-enc28j60
+git submodule add https://github.com/raspberrypi/pico-extras.git picoping/inc/pico-extras
+git submodule add https://github.com/raspberrypi/pico-sdk.git picoping/inc/pico-sdk
+
+cd picoping/inc/pico-extras
+git submodule update --init
+
+cd ../
+cd pico-sdk/src/rp2_common/tinyusb
+git submodule update --init
+
+cd ../../../
+git submodule update --init
