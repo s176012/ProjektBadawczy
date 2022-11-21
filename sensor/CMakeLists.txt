@@ -3,7 +3,7 @@
 cmake_minimum_required(VERSION 3.12)
 #include build functions from Pico SDK
 include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
-add_subdirectory(pico-onewire)
+add_subdirectory($ENV{ROOT_DIR}/sensor/pico-onewire)
 # Set name of project (as PROJECT_NAME) and C/C++ Standards
 project(sensor)
 set(CMAKE_C_STANDARD 11)

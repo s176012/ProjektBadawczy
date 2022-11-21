@@ -1,9 +1,13 @@
 #!/bin/bash
+export ROOT_DIR=${PWD%/*}
+export PICO_SDK_PATH=$ROOT_DIR/inc/pico-sdk
 rm -rf build
 mkdir build
 cd build
+
+echo "aaaaa"
 cmake \
-    -DPICO_SDK_PATH=/home/iot/raspberry-pi-pico/pico/pico-sdk/ \
+    -DPICO_SDK_PATH=$ROOT_DIR/inc/pico-sdk/ \
     ..
 
 make

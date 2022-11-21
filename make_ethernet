@@ -1,0 +1,13 @@
+#!/bin/bash
+export ROOT_DIR=${PWD} 
+export PICO_SDK_PATH=$ROOT_DIR/inc/pico-sdk
+rm -rf build
+mkdir build
+cd build
+cmake \
+    -DPICO_SDK_PATH=$ROOT_DIR/inc/pico-sdk \
+    -DPICO_EXTRAS_PATH=$ROOT_DIR/inc/pico-extras \
+    -DPICO_ENC28J60_PATH=$ROOT_DIR/inc/pico-enc28j60 \
+    ..
+
+make
