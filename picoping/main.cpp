@@ -1,3 +1,5 @@
+extern "C"
+{
 #include <hardware/gpio.h>
 
 #include <hardware/spi.h>
@@ -12,6 +14,7 @@
 
 #include <pico/enc28j60/enc28j60.h>
 #include <pico/enc28j60/ethernetif.h>
+}
 
 // #include "tcpecho_raw.h"
 
@@ -20,11 +23,14 @@
 #define SPI_BAUD 2000000
 #define SCK_PIN 2
 #define SI_PIN 3
-#define SO_PIN 0                                                                            
+#define SO_PIN 0
 #define CS_PIN 5
 #define INT_PIN 4
 #define RX_QUEUE_SIZE 10
-#define MAC_ADDRESS { 0x62, 0x4d, 0x40, 0x97, 0x05, 0xc4 }
+#define MAC_ADDRESS                        \
+	{                                      \
+		0x62, 0x4d, 0x40, 0x97, 0x05, 0xc4 \
+	}
 #define IP_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 3)
 #define NETWORK_MASK IPADDR4_INIT_BYTES(255, 255, 255, 0)
 #define GATEWAY_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 1)
@@ -36,30 +42,34 @@ struct enc28j60 enc28j60 = {
 	.spi = SPI,
 	.cs_pin = CS_PIN,
 	.mac_address = MAC_ADDRESS,
-	.next_packet = 0,
 	.critical_section = &spi_cs,
+	.next_packet = 0,
 };
 
-void
-eth_irq(uint gpio, uint32_t events)
+void eth_irq(uint gpio, uint32_t events)
 {
 	enc28j60_isr_begin(&enc28j60);
 	uint8_t flags = enc28j60_interrupt_flags(&enc28j60);
 
-	if (flags & ENC28J60_PKTIF) {
+	if (flags & ENC28J60_PKTIF)
+	{
 		struct pbuf *packet = low_level_input(&netif);
-		if (packet != NULL) {
-			if (!queue_try_add(&rx_queue, &packet)) {
+		if (packet != NULL)
+		{
+			if (!queue_try_add(&rx_queue, &packet))
+			{
 				pbuf_free(packet);
 			}
 		}
 	}
 
-	if (flags & ENC28J60_TXERIF) {
+	if (flags & ENC28J60_TXERIF)
+	{
 		LWIP_DEBUGF(NETIF_DEBUG, ("eth_irq: transmit error\n"));
 	}
 
-	if (flags & ENC28J60_RXERIF) {
+	if (flags & ENC28J60_RXERIF)
+	{
 		LWIP_DEBUGF(NETIF_DEBUG, ("eth_irq: receive error\n"));
 	}
 
@@ -67,8 +77,7 @@ eth_irq(uint gpio, uint32_t events)
 	enc28j60_isr_end(&enc28j60);
 }
 
-int
-main()
+int main()
 {
 	gpio_init_mask((1 << CS_PIN) | (1 << PICO_DEFAULT_LED_PIN));
 	gpio_set_dir_out_masked((1 << CS_PIN) | (1 << PICO_DEFAULT_LED_PIN));
@@ -97,11 +106,14 @@ main()
 
 	// tcpecho_raw_init();
 
-	while (true) {
-		struct pbuf* p = NULL;
+	while (true)
+	{
+		struct pbuf *p = NULL;
 		queue_try_remove(&rx_queue, &p);
-		if (p != NULL) {
-			if(netif.input(p, &netif) != ERR_OK) {
+		if (p != NULL)
+		{
+			if (netif.input(p, &netif) != ERR_OK)
+			{
 				LWIP_DEBUGF(NETIF_DEBUG, ("ethernetif_input: IP input error\n"));
 				pbuf_free(p);
 			}

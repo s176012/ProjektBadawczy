@@ -10,7 +10,8 @@ add_subdirectory($ENV{ROOT_DIR}/inc/pico-sdk)
 
 project(picoping)
 
-set(CXX_STANDARD 11 11)
+set(CMAKE_C_STANDARD 11)
+set(CXX_STANDARD 17)
 
 pico_sdk_init()
 
