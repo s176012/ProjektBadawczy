@@ -12,3 +12,6 @@ git submodule update --init
 
 cd ../../../
 git submodule update --init
+
+cd ../pico-extras/src/rp2_common/lwip
+git submodule update --init

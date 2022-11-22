@@ -1,0 +1,2 @@
+#!/bin/bash
+cp build/ethernet.uf2 /media/iot/RPI-RP2/

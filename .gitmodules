@@ -10,3 +10,7 @@
 [submodule "picoping/sensor/pico-onewire"]
 	path = picoping/sensor/pico-onewire
 	url = https://github.com/adamboardman/pico-onewire.git
+[submodule "picoping/main/pico-onewire"]
+	path = picoping/main/pico-onewire
+	url = https://github.com/adamboardman/pico-onewire.git
+

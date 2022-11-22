@@ -1,4 +1,5 @@
 picoping/build/
 picoping/sensor/build/
+picoping/main/build
 .vscode
 build

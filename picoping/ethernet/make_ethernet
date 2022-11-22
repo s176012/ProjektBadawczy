@@ -1,5 +1,5 @@
 #!/bin/bash
-export ROOT_DIR=${PWD} 
+export ROOT_DIR=${PWD%/*} 
 export PICO_SDK_PATH=$ROOT_DIR/inc/pico-sdk
 rm -rf build
 mkdir build
