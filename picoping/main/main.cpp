@@ -32,13 +32,16 @@ extern "C"
 #define CS_PIN 5
 #define INT_PIN 4
 #define RX_QUEUE_SIZE 10
+//2E-C1-78-AB-C6-E6
 #define MAC_ADDRESS                        \
     {                                      \
-        0x62, 0x4d, 0x40, 0x97, 0x05, 0xc4 \
+        0x2e, 0xc1, 0x78, 0xab, 0xc6, 0xe6 \
     }
-#define IP_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 3)
+#define IP_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 221)
 #define NETWORK_MASK IPADDR4_INIT_BYTES(255, 255, 255, 0)
 #define GATEWAY_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 1)
+
+// #define ETHERNET_DEBUG
 
 queue_t rx_queue;
 critical_section_t spi_cs;
@@ -84,6 +87,12 @@ void eth_irq(uint gpio, uint32_t events)
 
 int main()
 {
+    // sensor
+    stdio_init_all();
+    One_wire one_wire(15); // GP15 - Pin 20 on Pi Pico
+    one_wire.init();
+    rom_address_t address{};
+
     gpio_init_mask((1 << CS_PIN) | (1 << PICO_DEFAULT_LED_PIN));
     gpio_set_dir_out_masked((1 << CS_PIN) | (1 << PICO_DEFAULT_LED_PIN));
     gpio_put(PICO_DEFAULT_LED_PIN, true);
@@ -111,14 +120,10 @@ int main()
 
     // tcpecho_raw_init();
 
-    // sensor
-    stdio_init_all();
-    One_wire one_wire(15); // GP15 - Pin 20 on Pi Pico
-    one_wire.init();
-    rom_address_t address{};
-
+    int i =0;
     while (true)
     {
+        i++;
         struct pbuf *p = NULL;
         queue_try_remove(&rx_queue, &p);
         if (p != NULL)
@@ -136,10 +141,14 @@ int main()
         gpio_put(PICO_DEFAULT_LED_PIN, true);
 
         // sensor
-        one_wire.single_device_read_rom(address);
-        printf("Device Address: %02x%02x%02x%02x%02x%02x%02x%02x\n", address.rom[0], address.rom[1], address.rom[2], address.rom[3], address.rom[4], address.rom[5], address.rom[6], address.rom[7]);
-        one_wire.convert_temperature(address, true, false);
-        printf("Temperature: %3.1foC\n", one_wire.temperature(address));
-        sleep_ms(1000);
+        if(i==8e3){
+         one_wire.single_device_read_rom(address);
+         printf("Device Address: %02x%02x%02x%02x%02x%02x%02x%02x\n", address.rom[0], address.rom[1], address.rom[2], address.rom[3], address.rom[4], address.rom[5], address.rom[6], address.rom[7]);
+         one_wire.convert_temperature(address, true, false);
+         printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+         printf("Temperature: %3.1foC\n", one_wire.temperature(address));
+         i=0;
+        }
+        
     }
 }

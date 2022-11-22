@@ -27,9 +27,10 @@ extern "C"
 #define CS_PIN 5
 #define INT_PIN 4
 #define RX_QUEUE_SIZE 10
+//2E-C1-78-AB-C6-E6
 #define MAC_ADDRESS                        \
 	{                                      \
-		0x62, 0x4d, 0x40, 0x97, 0x05, 0xc4 \
+		0x2e, 0xc1, 0x78, 0xab, 0xc6, 0xe6 \
 	}
 #define IP_ADDRESS IPADDR4_INIT_BYTES(172, 20, 98, 3)
 #define NETWORK_MASK IPADDR4_INIT_BYTES(255, 255, 255, 0)
