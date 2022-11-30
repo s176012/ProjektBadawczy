@@ -1,0 +1,12 @@
+# !/bin/bash
+while :
+    do
+    for i in {1..5}
+        do
+            mosquitto_sub -p 1883 -t hal/temp -C 1 -W 2 >> www/temp.txt
+            sleep 1
+        done
+        echo "" > www/temp.txt
+    done
+
+

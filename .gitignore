@@ -3,3 +3,4 @@ picoping/sensor/build/
 picoping/main/build
 .vscode
 build
+.DS_Store
