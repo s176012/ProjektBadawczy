@@ -17,30 +17,32 @@
             5%;margin-right: 5%;">
             <h2 style="text-align: left; padding: 2%; ">Temperatura (Arduino
                 UNO)</h2>
-            <h1 id="temp" style="text-align: center; color:#862300">null</h1>
+            <h1 id="temperature" style="text-align: center; color:#862300">null</h1>
             <br>
         </div>
         <br>
         <div style="background-color:#D2E6E8; margin-left:
             5%;margin-right: 5%;">
             <h2 style="text-align: left; padding: 2%;">Wilgotność (DE0 Nano)</h2>
-            <h1 id="hum" style="text-align: center;color:#862300">null</h1>
+            <h1 id="humidity" style="text-align: center;color:#862300">null</h1>
             <br>
         </div>
         <br>
         <div style="background-color:#D2E6E8; margin-left:
             5%;margin-right: 5%;">
             <h2 style="text-align: left; padding: 2%;">Kolor (Raspberry 3B+)</h2>
-            <h1 id="col" style="text-align: center; color:#862300">null</h1>
+            <h1 id="color" style="text-align: center; color:#862300">null</h1>
             <br>
         </div>
         <script>
-            function doItWhenReady(text) {
-                document.getElementById("temp").innerHTML = text;
+            function changeSensorText(text) {
+                const sensor_type = text.split('_')[0];
+                const data = text.split('_')[1];
+                document.getElementById(sensor_type).innerHTML = data;
             }
 
             function runFunction(){
-                httpGetAsync("http://localhost:8081",doItWhenReady );
+                httpGetAsync("http://localhost:8081",changeSensorText);
             }
             
             function httpGetAsync(theUrl, callback)
@@ -53,8 +55,8 @@
                 xmlHttp.open("GET", theUrl, true); // true for asynchronous 
                 xmlHttp.send(null);    
             }
-            httpGetAsync("http://localhost:8081",doItWhenReady );
-            var t=setInterval(runFunction,4000);
+            httpGetAsync("http://localhost:8081",changeSensorText);
+            var t=setInterval(runFunction,2000);
         </script>
     </body>
 </html>

@@ -1,22 +1,32 @@
 # Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
-
+import time
 hostName = "localhost"
 serverPort = 8081
 
 class MyServer(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        f = open("www/temp.txt", "r")
-        lines = f.readlines()
+    def read_and_send_sensor_data(self):
+        db = open("www/db.txt", "r")
+        lines = db.readlines()
+        if lines:
+            last_line = lines[-1]
+        if "iot/temperature" in last_line:
+            self.send_sensor_data("temperature", last_line)
+        if "iot/humidity" in last_line:
+            self.send_sensor_data("humidity", last_line)
+        if "iot/color" in last_line:
+            self.send_sensor_data("color", last_line)    
+        
+    def send_sensor_data(self, sensor_type, data):
+        data = data.replace("iot/{} ".format(sensor_type), "")
         self.send_header("Content-type", "text/plain")
         self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
-        if lines:
-            self.wfile.write(bytes('{}'.format(lines[-1]), "utf-8"))
-        else:
-            self.wfile.write(bytes('0', "utf-8"))
+        self.wfile.write(bytes('{}_{}'.format(sensor_type, data), "utf-8"))
+    
+    def do_GET(self):
+        self.send_response(200)
+        self.read_and_send_sensor_data()
         
 
 if __name__ == "__main__":        

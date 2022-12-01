@@ -25,7 +25,7 @@ void setup()
   // Inicjacja czujnika
   sensors.begin();
   // setup serial communication
-  //  Serial.begin(57600);
+    Serial.begin(57600);
   Ethernet.begin(mac, ipfixed);
 
   // setup mqtt client
@@ -50,6 +50,7 @@ void sendData(float temp)
   char msgBuffer[20];
   if (mqttClient.connect(CLIENT_ID))
   {
-    mqttClient.publish("hal/temp", dtostrf(temp, 6, 2, msgBuffer));
+    mqttClient.publish("iot/temperature", dtostrf(temp, 6, 2, msgBuffer));
+    Serial.println("connected and published");
   }
 }

@@ -1,0 +1,11 @@
+# !/bin/bash
+while :
+do
+    mosquitto_pub -p 1883 -t iot/temperature -m 112322323
+    sleep 0.5
+    mosquitto_pub -p 1883 -t iot/humidity -m 2222
+    sleep 0.5
+    mosquitto_pub -p 1883 -t iot/color -m 3333
+    sleep 0.5
+    
+done
