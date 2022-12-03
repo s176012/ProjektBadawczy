@@ -15,9 +15,18 @@
         <br>
         <div style="background-color:#D2E6E8; margin-left:
             5%;margin-right: 5%;">
-            <h2 style="text-align: left; padding: 2%; ">Temperatura (Arduino
+            <h2 style="text-align: left; padding: 2%; ">Przyspieszenie (Arduino
                 UNO)</h2>
-            <h1 id="temperature" style="text-align: center; color:#862300">null</h1>
+            <h1 id="acc-x" style="text-align: center; color:#862300">null</h1>
+            <h1 id="acc-y" style="text-align: center; color:#862300">null</h1>
+            <h1 id="acc-z" style="text-align: center; color:#862300">null</h1>
+            <br>
+        </div>
+        <br>
+        <div style="background-color:#D2E6E8; margin-left:
+            5%;margin-right: 5%;">
+            <h2 style="text-align: left; padding: 2%;">Temperatura (DE0 Nano)</h2>
+            <h1 id="temperature" style="text-align: center;color:#862300">null</h1>
             <br>
         </div>
         <br>
@@ -38,6 +47,14 @@
             function changeSensorText(text) {
                 const sensor_type = text.split('_')[0];
                 const data = text.split('_')[1];
+                if (sensor_type == "acc"){
+                    const x = data.split("|")[0];
+                    const y = data.split("|")[1];
+                    const z = data.split("|")[2];
+                    document.getElementById("acc-x").innerHTML = x;
+                    document.getElementById("acc-y").innerHTML = y;
+                    document.getElementById("acc-z").innerHTML = z;
+                }
                 document.getElementById(sensor_type).innerHTML = data;
             }
 

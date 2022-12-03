@@ -15,8 +15,10 @@ class MyServer(BaseHTTPRequestHandler):
         if "iot/humidity" in last_line:
             self.send_sensor_data("humidity", last_line)
         if "iot/color" in last_line:
-            self.send_sensor_data("color", last_line)    
-        
+            self.send_sensor_data("color", last_line)
+        if "iot/acc" in last_line:
+            self.send_sensor_data("acc", last_line)   
+
     def send_sensor_data(self, sensor_type, data):
         data = data.replace("iot/{} ".format(sensor_type), "")
         self.send_header("Content-type", "text/plain")
