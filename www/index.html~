@@ -59,7 +59,7 @@
             }
 
             function runFunction(){
-                httpGetAsync("http://172.20.98.222:8081",changeSensorText);
+                httpGetAsync("http://localhost:8081",changeSensorText);
             }
             
             function httpGetAsync(theUrl, callback)
