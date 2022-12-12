@@ -40,7 +40,9 @@
         <div style="background-color:#D2E6E8; margin-left:
             5%;margin-right: 5%;">
             <h2 style="text-align: left; padding: 2%;">Kolor (Raspberry 3B+)</h2>
-            <h1 id="color" style="text-align: center; color:#862300">null</h1>
+            <h1 id="color-R" style="text-align: center; color:#862300">null</h1>
+            <h1 id="color-G" style="text-align: center; color:#862300">null</h1>
+            <h1 id="color-B" style="text-align: center; color:#862300">null</h1>
             <br>
         </div>
         <script>
@@ -55,11 +57,19 @@
                     document.getElementById("acc-y").innerHTML = y;
                     document.getElementById("acc-z").innerHTML = z;
                 }
+                if (sensor_type == "color"){
+                    const R = data.split("|")[0];
+                    const G = data.split("|")[1];
+                    const B = data.split("|")[2];
+                    document.getElementById("color-R").innerHTML = R;
+                    document.getElementById("color-G").innerHTML = G;
+                    document.getElementById("color-B").innerHTML = B;
+                }
                 document.getElementById(sensor_type).innerHTML = data;
             }
 
             function runFunction(){
-                httpGetAsync("http://172.20.98.222:8081",changeSensorText);
+                httpGetAsync("http://localhost:8081",changeSensorText);
             }
             
             function httpGetAsync(theUrl, callback)
@@ -73,7 +83,7 @@
                 xmlHttp.send(null);    
             }
             httpGetAsync("http://localhost:8081",changeSensorText);
-            var t=setInterval(runFunction,2000);
+            var t=setInterval(runFunction,1000);
         </script>
     </body>
 </html>

@@ -1,10 +1,8 @@
-
-iot/acc 0.39|3.77|9.96
-iot/acc 4.86|5.96|7.69
-iot/acc 4.67|2.75|6.47
-iot/acc 8.63|8.83|5.26
-iot/acc -7.49|-5.88|0.67
-iot/acc -7.49|-5.88|0.67
-iot/acc -7.53|-5.84|0.63
-iot/acc -7.45|-5.88|0.63
-iot/acc -7.45|-6.00|0.43
+iot/humidity 121212
+iot/color 1|2|3
+iot/acc 4444|111|222
+iot/temperature 112322323
+iot/humidity 121212
+iot/temperature 112322323
+iot/humidity 121212
+iot/color 1|2|3
