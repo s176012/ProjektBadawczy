@@ -5,7 +5,9 @@ do
     sleep 0.5
     mosquitto_pub -p 1883 -t iot/humidity -m 2222
     sleep 0.5
-    mosquitto_pub -p 1883 -t iot/color -m 3333
+    mosquitto_pub -p 1883 -t iot/color -m "1|2|3"
+    sleep 0.5
+    mosquitto_pub -p 1883 -t iot/acc -m 4444
     sleep 0.5
     
 done

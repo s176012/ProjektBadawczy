@@ -4,3 +4,6 @@ picoping/main/build
 .vscode
 build
 .DS_Store
+*.un~
+*.py~
+*.html~
