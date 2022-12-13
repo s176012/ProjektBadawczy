@@ -1,2 +1,0 @@
-#!/bin/bash
-cp build/main.uf2 /media/iot/RPI-RP2/
