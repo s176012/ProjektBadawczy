@@ -40,9 +40,6 @@ def on_message_color(mosq, obj, msg):
 def on_message_acc(mosq, obj, msg):
     write_to_db(mosq, obj, msg)
 
-def on_message_humidity(mosq, obj, msg):
-    write_to_db(mosq, obj, msg)
-
 
 def on_message(mosq, obj, msg):
     # This callback will be called for messages that we receive that do not
@@ -58,7 +55,6 @@ mqttc = mqtt.Client()
 mqttc.message_callback_add("iot/temperature", on_message_temp)
 mqttc.message_callback_add("iot/color", on_message_color)
 mqttc.message_callback_add("iot/acc", on_message_acc)
-mqttc.message_callback_add("iot/humidity", on_message_humidity)
 mqttc.on_message = on_message
 mqttc.connect("127.0.0.1", 1883, 60)
 mqttc.subscribe("iot/#", 0)

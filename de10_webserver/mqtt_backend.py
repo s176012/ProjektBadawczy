@@ -14,8 +14,6 @@ class MyServer(BaseHTTPRequestHandler):
         if "iot/temperature" in last_line:
             last_line = last_line.split(" ")[0]+" "+str(float(last_line.split(" ")[1])/1000)
             self.send_sensor_data("temperature", last_line)
-        if "iot/humidity" in last_line:
-            self.send_sensor_data("humidity", last_line)
         if "iot/color" in last_line:
             self.send_sensor_data("color", last_line)
         if "iot/acc" in last_line:

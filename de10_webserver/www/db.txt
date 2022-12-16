@@ -1,4 +1,3 @@
 iot/color 1|2|3
 iot/acc 4444|111|222
 iot/temperature 12345
-iot/humidity 121212

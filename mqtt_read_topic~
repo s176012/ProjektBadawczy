@@ -1,0 +1,15 @@
+# !/bin/bash
+while :
+    do
+    for i in {1..10}
+        do
+            mosquitto_sub -p 1883 -t iot/color -C 1 -W 2 -v -k 3 >> www/db.txt
+            sleep 0.5
+	    mosquitto_sub -p 1883 -t iot/acc -C 1 -W 2 -v -k 3 >> www/db.txt
+	    sleep 0.5
+
+        done
+        echo "" > www/db.txt
+    done
+
+
