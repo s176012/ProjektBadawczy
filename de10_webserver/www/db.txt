@@ -1,4 +1,10 @@
-iot/temperature 20812
-iot/temperature 20750
-iot/temperature 20750
-iot/temperature 20812
+iot/temperature 21125
+iot/temperature4 23375
+iot/temperature3 21687
+iot/temperature 21187
+iot/temperature4 23500
+iot/temperature3 21687
+iot/temperature 21187
+iot/temperature4 23500
+iot/temperature2  25.44
+iot/temperature3 21687
