@@ -18,7 +18,7 @@ DallasTemperature sensors(&oneWire);
 
 int lichtstatus;
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
-byte ipfixed[] = {192, 168, 0, 100};
+byte ipfixed[] = {172,20,98,225};
 EthernetClient ethClient;
 PubSubClient mqttClient;
 
@@ -34,7 +34,7 @@ void setup()
 
   // setup mqtt client
   mqttClient.setClient(ethClient);
-  mqttClient.setServer("192.168.0.164", 1883);
+  mqttClient.setServer("172.20.98.222", 1883);
   previousMillis = millis();
 
   // Inicjalizacja ADXL345
