@@ -1,3 +1,8 @@
-iot/color 1|2|3
-iot/acc 4444|111|222
-iot/temperature 12345
+iot/temperature 20187
+iot/color 28|16|8
+iot/temperature 20250
+iot/acc 3.37|9.77|-2.67
+iot/color 28|16|8
+iot/color 28|16|8
+iot/acc 3.41|9.77|-2.67
+iot/color 28|16|8
