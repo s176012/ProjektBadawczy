@@ -15,7 +15,9 @@ OneWire oneWire(ONE_WIRE_BUS);
 ADXL345 accelerometer;
 // Pass our oneWire reference to Dallas Temperature.
 DallasTemperature sensors(&oneWire);
-
+float last_send_x=9999;
+float last_send_y=9999;
+float last_send_z=9999;
 int lichtstatus;
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED};
 byte ipfixed[] = {172,20,98,225};
@@ -57,10 +59,23 @@ void loop()
  
   if (millis() - previousMillis > INTERVAL)
   {
-    sensors.requestTemperatures();
-    sendData(sensors.getTempCByIndex(0), norm.XAxis, norm.YAxis, norm.ZAxis);
+    float x = norm.XAxis;
+    float y = norm.YAxis;
+    float z = norm.ZAxis;
+    if((abs(x - last_send_x) > 0.1)||(abs(y - last_send_y) > 0.1)||(abs(z - last_send_z) > 0.1)){
+      last_send_x = x;
+      last_send_y = y;
+      last_send_z = z;
+      Serial.print(x);
+      Serial.print(y);
+      Serial.println(z);
+      sendData(0, norm.XAxis, norm.YAxis, norm.ZAxis);
+    }else{
+     Serial.println("not sending");      
+    }    
     previousMillis = millis();
   }
+  
 }
 
 void sendData(float temp, float x, float y, float z)
